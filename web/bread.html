@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Minecraft烘培坊</title>
+<style>
+body {
+  font-family: "Microsoft JhengHei", sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background-color: #fffaf4;
+  color: #333;
+}
+
+header {
+  background: #d2691e;
+  color: white;
+  padding: 15px 0;
+  text-align: center;
+}
+
+nav {
+  background: #a0522d;
+  padding: 10px 0;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+nav ul li {
+  display: inline-block;
+  position: relative;
+  margin: 0 15px;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 10px;
+  display: block;
+}
+
+nav a:hover {
+  background-color: #d2691e;
+  border-radius: 4px;
+}
+
+/* 子選單 */
+nav ul ul {
+  display: none;
+  position: absolute;
+  background-color: #a0522d;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  border-radius: 5px;
+  top: 100%;
+  left: 0;
+  min-width: 150px;
+  z-index: 10;
+}
+
+nav ul ul li {
+  display: block;
+  margin: 0;
+}
+
+nav ul ul a {
+  padding: 10px;
+  font-weight: normal;
+}
+
+nav ul li:hover > ul {
+  display: block;
+}
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 15px;
+}
+
+img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+p {
+  text-align: center;
+  font-size: 18px;
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #d2691e;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  background: #a0522d;
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>Minecraft烘培坊</h1>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#">首頁</a>
+      <ul>
+        <li><a href="#">最新消息</a></li>
+        <li><a href="#">優惠活動</a></li>
+      </ul>
+    </li>
+    <li><a href="#">產品介紹</a>
+      <ul>
+        <li><a href="#">麵包系列</a></li>
+        <li><a href="#">甜點系列</a></li>
+      </ul>
+    </li>
+    <li><a href="#">關於我們</a>
+      <ul>
+        <li><a href="#">品牌故事</a></li>
+        <li><a href="#">師傅介紹</a></li>
+      </ul>
+    </li>
+    <li><a href="#">聯絡方式</a>
+      <ul>
+        <li><a href="#">門市位置</a></li>
+        <li><a href="#">線上留言</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+<center>
+<div class="container">
+  <h2>こ↑こ↓就是麵包店了</h2>
+  <p>亞麻的細語、葵花的微風，每一口都是50萬馬克</p>
+  <img src="images.jfif" alt="新鮮出爐的麵包" width="500px">
+  <p><a href="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.mcmod.cn%2Fitem%2F992.html&psig=AOvVaw3BsNAmp1sR2SMMsx_e25Gi&ust=1761792840862000&source=images&cd=vfe&opi=89978449&ved=0CBgQjhxqFwoTCNC0qvWzyJADFQAAAAAdAAAAABAE" class="btn">瞭解更多</a></p>
+</div>
+</center>
+</body>
+</html>
