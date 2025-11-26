@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title>30 秒四則運算練習</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f0f0f0;
+      text-align: center;
+      padding-top: 50px;
+    }
+    .box {
+      background: white;
+      width: 320px;
+      margin: auto;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .question { font-size: 2rem; margin: 10px 0; }
+    .timer { font-size: 1.5rem; margin: 10px 0; }
+    .result { margin-top: 12px; min-height: 24px; }
+    input, button { margin-top: 10px; padding: 8px; font-size: 1rem; }
+    button { cursor: pointer; }
+  </style>
+</head>
+<body>
+
+  <div class="box">
+    <h2>59 秒四則運算</h2>
+    <div class="question" id="question">按「開始」出題</div>
+    <div class="timer">剩餘時間：<span id="time">59</span></div>
+
+    <input type="number" id="answer" disabled>
+    <br>
+    <button id="startBtn">開始出題</button>
+    <button id="submitBtn" disabled>送出答案</button>
+
+    <div class="result" id="result"></div>
+  </div>
+
+<script>
+let correctAnswer = 0;
+let timeLeft = 59;
+let timerId = null;
+let answered = false;
+
+function startQuestion() {
+  clearInterval(timerId);
+  document.getElementById("result").textContent = "";
+  answered = false;
+
+  const a = Math.floor(Math.random() * 99) + 1;
+  const b = Math.floor(Math.random() * 99) + 1;
+  const ops = ["+", "-", "×", "÷"];
+  const op = ops[Math.floor(Math.random() * ops.length)];
+
+  let questionText = "";
+
+  if (op === "+") { correctAnswer = a + b; questionText = `${a} + ${b}`; }
+  if (op === "-") { correctAnswer = Math.abs(a - b); questionText = `${Math.max(a,b)} - ${Math.min(a,b)}`; }
+  if (op === "×") { correctAnswer = a * b; questionText = `${a} × ${b}`; }
+  if (op === "÷") {
+    const divisor = b;
+    const quotient = a;
+    const dividend = a * b;
+    correctAnswer = quotient;
+    questionText = `${dividend} ÷ ${divisor}`;
+  }
+
+  document.getElementById("question").textContent = questionText;
+
+  document.getElementById("answer").disabled = false;
+  document.getElementById("submitBtn").disabled = false;
+  document.getElementById("answer").value = "";
+  document.getElementById("answer").focus();
+
+  timeLeft = 59;
+  document.getElementById("time").textContent = timeLeft;
+
+  timerId = setInterval(() => {
+    timeLeft--;
+    document.getElementById("time").textContent = timeLeft;
+    if (timeLeft === 0) {
+      clearInterval(timerId);
+      if (!answered) checkAnswer(true);
+    }
+  }, 1000);
+}
+
+function checkAnswer(timeUp = false) {
+  answered = true;
+  clearInterval(timerId);
+
+  const userAns = Number(document.getElementById("answer").value);
+  const resultEl = document.getElementById("result");
+
+  document.getElementById("answer").disabled = true;
+  document.getElementById("submitBtn").disabled = true;
+
+  if (timeUp) {
+    resultEl.textContent = `時間到！正確答案是：${correctAnswer}`;
+    resultEl.style.color = "red";
+  } else if (userAns === correctAnswer) {
+    resultEl.textContent = "答對了！";
+    resultEl.style.color = "green";
+  } else {
+    resultEl.textContent = `答錯了！答案是：${correctAnswer}`;
+    resultEl.style.color = "red";
+  }
+}
+
+document.getElementById("startBtn").onclick = startQuestion;
+document.getElementById("submitBtn").onclick = () => checkAnswer(false);
+
+document.getElementById("answer").addEventListener("keydown", e => {
+  if (e.key === "Enter") checkAnswer(false);
+});
+</script>
+</body>
+</html>
